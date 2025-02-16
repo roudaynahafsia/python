@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}Add{% endblock title %}
+{% block content %}
+
+    <div class="container1">
+        <h1>Update Member</h1>
+        <form action="{% url 'upmen' men.id %}" method="post">
+            {% csrf_token %}
+            <label for="">Full Name</label><br><br>
+            <input type="text" name="full_name" value="{{men.full_name}}"><br><br>
+            <label for="">email</label><br><br>
+            <input type="email" name="email" value="{{men.email}}"><br><br>
+            <label for="">twitter</label><br><br>
+            <input type="text" name="twitter" value="{{men.twitter}}"><br><br>
+            <label for="">linkedin</label><br><br>
+            <input type="text" name="linkedin" value="{{men.linkedin}}"><br><br>
+            <label for="">facebook</label><br><br>
+            <input type="text" name="facebook" value="{{men.facebook}}"><br><br>
+            <label for="">website</label><br><br>
+            <input type="text" name="website" value="{{men.website}}"><br><br>
+            <button type="submit" id="new">UPDATE</button>
+        </form>
+    </div>
+
+{% endblock content %}

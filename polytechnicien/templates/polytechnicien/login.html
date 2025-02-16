@@ -1,0 +1,128 @@
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+<!-- Section principale pour la page de connexion -->
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-lg-5 col-md-7 col-sm-9">
+        <!-- Carte avec ombre et animation -->
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden position-relative">
+            <!-- En-tête de la carte avec dégradé et effet de vague -->
+            <div class="card-header bg-gradient-primary text-white text-center py-4 position-relative">
+                <h3 class="fw-bold mb-0">Bienvenue</h3>
+                <p class="mb-0">Connectez-vous à votre compte</p>
+                <!-- Effet de vague animé -->
+                <div class="wave"></div>
+            </div>
+
+            <!-- Corps de la carte -->
+            <div class="card-body p-4">
+                <!-- Formulaire de connexion -->
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+
+                    <!-- Boucle pour afficher les champs du formulaire -->
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ field.label }}</label>
+                            <div class="input-group">
+                                <!-- Icône pour le champ -->
+                                <span class="input-group-text bg-light"><i class="fas fa-user"></i></span>
+                                {{ field }}
+                            </div>
+                            <!-- Affichage des erreurs de champ -->
+                            {% if field.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in field.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <!-- Bouton de connexion avec icône -->
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm hover-effect">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    </button>
+                </form>
+
+                <!-- Affichage des erreurs générales du formulaire -->
+                {% if form.errors %}
+                    <div class="alert alert-danger mt-3 text-center" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i> Vérifiez vos informations de connexion.
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Pied de page de la carte avec lien d'inscription -->
+            <div class="card-footer bg-white text-center py-3 border-0">
+                <small>Vous n'avez pas de compte ? <a href="{% url 'register' %}" class="text-primary fw-bold hover-effect">Inscrivez-vous</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Styles CSS personnalisés -->
+<style>
+    body {
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #4e73df, #224abe);
+        position: relative;
+    }
+
+    .card {
+        animation: fadeIn 0.5s ease-in-out;
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .input-group-text {
+        border-radius: 0.5rem 0 0 0.5rem;
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+    }
+
+    .wave {
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        background: url('https://www.transparenttextures.com/patterns/wavecut.png');
+        opacity: 0.3;
+        animation: waveAnimation 2s linear infinite;
+    }
+
+    .hover-effect {
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .hover-effect:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes waveAnimation {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(-10px); }
+        100% { transform: translateX(0); }
+    }
+</style>
+{% endblock %}

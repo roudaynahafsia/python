@@ -1,0 +1,128 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Polytec App - {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Styles & Frameworks -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .fadeInUp {
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .hover-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .hover-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4 shadow animate__animated animate__fadeInDown">
+        <h1 class="fw-bold">Django Polytec App</h1>
+        <p class="lead">Une solution professionnelle pour gérer votre communauté</p>
+        <img src="https://www.polytecsousse.tn/wp-content/uploads/2020/09/cropped-logo-polytech.png" alt="Logo Polytec" class="mt-3" width="150">
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container">
+            <a class="navbar-brand" href="/">Polytec</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/services/">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        {% block content %}{% endblock content %}
+
+        <section class="mt-5">
+            <h2 class="text-center fadeInUp">Ce que disent nos utilisateurs</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card hover-card shadow p-3 text-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="rounded-circle mb-3" width="80" alt="Utilisateur">
+                        <p>“Une plateforme incroyable pour gérer notre communauté !”</p>
+                        <h5 class="text-primary">- Jean Dupont</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card hover-card shadow p-3 text-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" class="rounded-circle mb-3" width="80" alt="Utilisateur">
+                        <p>“Simple, efficace et performant !”</p>
+                        <h5 class="text-primary">- Marie Curie</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card hover-card shadow p-3 text-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="rounded-circle mb-3" width="80" alt="Utilisateur">
+                        <p>“Un outil indispensable pour notre gestion.”</p>
+                        <h5 class="text-primary">- Albert Einstein</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-5">
+            <h2 class="text-center fadeInUp">Nos Fonctionnalités</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card hover-card shadow p-3 text-center">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h5>Gestion des utilisateurs</h5>
+                        <p>Ajoutez, modifiez et gérez vos utilisateurs avec facilité.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card hover-card shadow p-3 text-center">
+                        <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
+                        <h5>Statistiques en temps réel</h5>
+                        <p>Analysez vos données et performances instantanément.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card hover-card shadow p-3 text-center">
+                        <i class="fas fa-cogs fa-3x text-warning mb-3"></i>
+                        <h5>Personnalisation avancée</h5>
+                        <p>Configurez l'application selon vos besoins spécifiques.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-primary text-white text-center py-4 mt-5 shadow-lg">
+        <p class="mb-2">&copy; 2024 Django Polytec App - Tous droits réservés.</p>
+        <p>
+            <a href="/privacy/" class="text-white text-decoration-none">Politique de confidentialité</a> |
+            <a href="/terms/" class="text-white text-decoration-none">Conditions d'utilisation</a>
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

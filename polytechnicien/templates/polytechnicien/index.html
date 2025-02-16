@@ -1,0 +1,126 @@
+{# polytechnicien/templates/polytechnicien/index.html #}
+{% extends 'layout.html' %}
+{% block title %}Accueil{% endblock title %}
+{% block content %}
+{% comment %} <form action="/" method="post" class="join-form mt-8 m-auto" enctype="multipart/form-
+data">
+
+{% csrf_token %}
+<div class="">
+<label for="" class="block mb-2 text-lg">Une image de toi</label>
+
+<br>
+{% comment %} {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %} {% endcomment %}
+{% comment %} <img src="https://www.polytecsousse.tn/wp-content/uploads/2020/09/cropped-logo-polytech.png" alt="" class="w-full object-coverobject-center">
+<br>
+<!-- {{ form.picture }} -->
+</div>
+<div class="mt-4">
+Nom et prénom: {{ form.full_name }}
+<span class="text-sm text-red-600">
+{{ form.full_name.errors }}
+</span>
+</div>
+<div class="mt-4">
+
+    Email: {{ form.email }}
+
+    <span class="text-sm text-red-600">
+    
+    {{ form.email.errors }}
+    </span>
+    </div>
+    <div class="mt-4">
+    Compte Facebook {{ form.facebook }}
+    <span class="text-sm text-red-600">
+    
+    {{ form.facebook.errors }}
+    </span>
+    </div>
+    </div>
+    <div class="mt-4">
+    <div class="mt-4 ">
+    Compte twitter {{ form.twitter }}
+    
+    <span class="text-sm text-red-600">
+    
+    {{ form.twitter.errors }}
+    </span>
+    </div>
+    <br>
+    <div class="mt-4 ">
+    Compte linkedin {{ form.linkedin }}
+    <span class="text-sm text-red-600">
+    
+    {{ form.linkedin.errors }}
+    </span>
+    </div>
+    </div>
+    <div class="mt-4">
+    Site web {{ form.website }}
+    
+    <span class="text-sm text-red-600">
+    
+    {{ form.website.errors }}
+    </span>
+    </div>
+    </div>
+    <div class="mt-4">
+    <input type="submit" value="Valider" class="bg-green p-3 cursor-pointer w-full">
+    <input type="reset" value="Reset" class="bg-green p-3 cursor-pointer w-full">
+    </div>
+    </form> {% endcomment %} 
+
+    {% comment %} <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head> {% endcomment %}
+    {% comment %} {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}"> {% endcomment %}
+    
+    {% comment %} <body> {% endcomment %}
+        <div class="container">
+            <h1>Members</h1>
+            <table id="customers" border="1">
+                <thead>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Country</th>
+                    <th colspan="2" id="mid">Action</th>
+                </thead>
+                {%for men in mens%}
+                <tr>
+                    <td>{{men.full_name}}</td>
+                    <td>{{men.email}}</td>
+                    <td>{{men.twitter}}</td>
+                    <td>{{men.linkedin}}</td>
+                    <td>
+                        <a href="update/{{men.id}}"><button id="up">Update</button> </a>
+                    </td>
+                    <td>
+                        <a href="delete/{{men.id}}"><button id="del">Delete</button></a>
+                    </td>
+    
+                </tr>
+                {% endfor %}
+            </table>
+            <br><br>
+            <a href="{% url 'add'%}"><button id="new3">Add Member</button></a>
+        </div>
+    {% comment %} </body> {% endcomment %}
+{% comment %}     
+    </html> {% endcomment %}
+    {% endblock content %}
