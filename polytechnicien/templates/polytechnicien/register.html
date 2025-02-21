@@ -1,18 +1,228 @@
-<!-- polytechnicien/templates/polytechnicien/register.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - Django Polytec</title>
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* Variables CSS */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6a11cb, #2575fc);
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --background-color: #f5f7fa;
+            --card-background: #ffffff;
+            --shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        /* Style général */
+        body {
+            font-family: var(--font-family);
+            background: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Conteneur */
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Style de la carte */
+        .card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-background);
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease-in-out;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Header */
+        .card-header {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .card-header h3 {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 22px;
+        }
+
+        /* Formulaire */
+        .form-label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        /* Champs de formulaire */
+        .input-group {
+            background: #f9f9f9;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            border: none;
+            outline: none;
+            background: transparent;
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Effet de focus */
+        .input-group:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0px 0px 10px rgba(106, 17, 203, 0.3);
+        }
+
+        /* Bouton stylé */
+        .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0px 4px 12px rgba(106, 17, 203, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            box-shadow: 0px 6px 18px rgba(106, 17, 203, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Pied de page */
+        .card-footer {
+            background: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Lien avec effet */
+        .card-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .card-footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Animation d'apparition */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+            }
+
+            .card-header {
+                padding: 20px;
+            }
+
+            .card-header h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Inscription</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">S'inscrire</button>
-    </form>
-    <p>Vous avez déjà un compte ? <a href="{% url 'login' %}">Connectez-vous ici</a></p>
+    <div class="container">
+        <div class="card">
+            <!-- Header -->
+            <div class="card-header">
+                <h3>Inscription</h3>
+                <p>Créez votre compte</p>
+            </div>
+
+            <!-- Formulaire -->
+            <div class="card-body">
+                <form method="post">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="CSRF_TOKEN">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="id_username">Nom d'utilisateur</label>
+                        <div class="input-group">
+                            <input type="text" name="username" maxlength="150" required id="id_username">
+                        </div>
+                        <span class="helptext small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="id_email">Email</label>
+                        <div class="input-group">
+                            <input type="email" name="email" maxlength="320" required id="id_email">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="id_password1">Mot de passe</label>
+                        <div class="input-group">
+                            <input type="password" name="password1" autocomplete="new-password" required id="id_password1">
+                        </div>
+                        <span class="helptext small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="id_password2">Confirmez le mot de passe</label>
+                        <div class="input-group">
+                            <input type="password" name="password2" autocomplete="new-password" required id="id_password2">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">S'inscrire</button>
+                </form>
+            </div>
+
+            <!-- Pied de page -->
+            <div class="card-footer">
+                <p>Vous avez déjà un compte ? <a href="/login/">Connectez-vous ici</a></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
+{% load static %}  
 {% block title %}Connexion{% endblock %}
-
 {% block content %}
 <!-- Section principale pour la page de connexion -->
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
@@ -64,65 +64,169 @@
 
 <!-- Styles CSS personnalisés -->
 <style>
-    body {
-        background: linear-gradient(to right, #6a11cb, #2575fc);
-        font-family: 'Poppins', sans-serif;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Variables CSS */
+:root {
+    --primary-gradient: linear-gradient(135deg, #6a11cb, #2575fc);
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --background-color: #f5f7fa;
+    --card-background: #ffffff;
+    --shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* Style général */
+body {
+    font-family: var(--font-family);
+    background: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Conteneur principal */
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Style de la carte */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card-background);
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.5s ease-in-out;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header */
+.card-header {
+    background: var(--primary-gradient);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 12px 12px 0 0;
+}
+
+.card-header h3 {
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+
+/* Formulaire */
+.form-label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Champs de formulaire */
+.input-group {
+    background: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Effet de focus */
+.input-group:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0px 0px 10px rgba(106, 17, 203, 0.3);
+}
+
+/* Bouton stylé */
+.btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(106, 17, 203, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    box-shadow: 0px 6px 18px rgba(106, 17, 203, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Pied de page */
+.card-footer {
+    background: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Lien avec effet */
+.card-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.card-footer a:hover {
+    color: var(--secondary-color);
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
     }
 
-    .bg-gradient-primary {
-        background: linear-gradient(135deg, #4e73df, #224abe);
-        position: relative;
+    .card-header {
+        padding: 20px;
     }
 
-    .card {
-        animation: fadeIn 0.5s ease-in-out;
-        border-radius: 15px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .card-header h3 {
+        font-size: 1.5rem;
     }
+}
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .input-group-text {
-        border-radius: 0.5rem 0 0 0.5rem;
-        background-color: #f8f9fa;
-        border: 1px solid #ced4da;
-    }
-
-    .wave {
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 100%;
-        height: 20px;
-        background: url('https://www.transparenttextures.com/patterns/wavecut.png');
-        opacity: 0.3;
-        animation: waveAnimation 2s linear infinite;
-    }
-
-    .hover-effect {
-        transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .hover-effect:hover {
-        transform: scale(1.05);
-        opacity: 0.9;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes waveAnimation {
-        0% { transform: translateX(0); }
-        50% { transform: translateX(-10px); }
-        100% { transform: translateX(0); }
-    }
 </style>
 {% endblock %}
